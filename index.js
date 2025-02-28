@@ -40,9 +40,9 @@ async function generateFiles() {
     const fields = fieldMatches.map(match => match.replace(/`/g, ''));
 
     // 创建文件夹
-    const controllersPath = path.join(__dirname, 'controllers', folderName);
-    const servicesPath = path.join(__dirname, 'services', folderName);
-    const modelsPath = path.join(__dirname, 'models');
+    const controllersPath = path.join(process.cwd(), 'controllers', folderName);
+    const servicesPath = path.join(process.cwd(), 'services', folderName);
+    const modelsPath = path.join(process.cwd(), 'models');
     await mkdirp(controllersPath);
     await mkdirp(servicesPath);
     await mkdirp(modelsPath);
