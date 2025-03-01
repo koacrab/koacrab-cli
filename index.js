@@ -109,6 +109,7 @@ module.exports = class ${tableNameGigCase} {
             .field(field) 
             .where(where) 
             .order(order) 
+            .find()
             .execSql(); 
 
         return result;
@@ -253,10 +254,8 @@ module.exports = class ${fileNameBigCamel} {
                 });
             } else {
                 let insertData = {
-                    user_id: userInfo.id,
-                    status: 0,
+                    // user_id: userInfo.id,
                     add_time: time,
-                    update_time: time
                 };
 
                 // 根据表结构字段来插入数据
@@ -283,12 +282,12 @@ module.exports = class ${fileNameBigCamel} {
         id = tools.encryptAndDecrypt(1, 3, id);
 
         if (id) {
-            let activityInfo = await koacrab.models.${tableNameCase}.find({
+            let c = await koacrab.models.${tableNameCase}.find({
                 where: { id }
             });
 
-            if (activityInfo['id']) {
-                result = activityInfo;
+            if (detailInfo['id']) {
+                result = detailInfo;
             } else {
                 error = 1;
                 reason = '未找到信息!';
