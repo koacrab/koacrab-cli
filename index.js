@@ -94,7 +94,6 @@ module.exports = class ${tableNameGigCase} {
             .field(field) 
             .where(where) 
             .order(order) 
-            .page(pageNum, pageSize) 
             .limit(limit) 
             .select() 
             .execSql(); 
@@ -150,6 +149,12 @@ module.exports = class ${tableNameGigCase} {
             .where(info.where)
             .update()
             .execSql()
+
+        return result;
+    }
+
+    async query(info = '') {
+        let { result } = await this.db.query(info).execSql();
 
         return result;
     }
@@ -336,11 +341,14 @@ module.exports = class ${fileNameBigCamel} {
                 data: { delete_time: time },
                 where: { id }
             });
+            
+            error = 0;
+            reason = '删除成功！'; 
         }
 
         return {
             error: error,
-            reason: '删除成功！',
+            reason: reason,
             result: ''
         }
     }
